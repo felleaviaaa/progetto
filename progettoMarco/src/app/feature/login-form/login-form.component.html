@@ -28,6 +28,7 @@
             required
           />
           <button
+            type="button"
             mat-icon-button
             matSuffix
             (click)="hide = !hide"
@@ -44,7 +45,7 @@
         </mat-form-field>
       </div>
       <div class="button-section">
-        <button type="submit" mat-stroked-button color="warn">Accedi</button>
+        <button type="submit" [disabled]="!loginForm.valid" mat-stroked-button color="warn">Accedi</button>
       </div>
     </form>
   </div>
