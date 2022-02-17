@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OneInterceptor } from './core/service/interceptor/one.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { fakeBackendProvider } from "./core/service/interceptor/fake-backend";
+import { JwtModule } from "@auth0/angular-jwt";
 @NgModule({
   declarations: [AppComponent, LoginFormComponent],
   imports: [
@@ -29,6 +30,11 @@ import { fakeBackendProvider } from "./core/service/interceptor/fake-backend";
     HttpClientModule,
     AppRoutingModule,
     MatSnackBarModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter:  () => localStorage.getItem('access_token')
+      }
+    })
   ],
   providers: [
     {

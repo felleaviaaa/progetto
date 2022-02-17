@@ -8,18 +8,19 @@ import { Observable, pipe, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private url = 'http://localhost:3001/login';
+  private url = 'http://localhost:3001/users/authenticate';
 
   constructor(private http: HttpClient) {}
 
   loginUser(email, password): Observable<any> {
-    return this.http
-      .post<any>(this.url, { email, password }, { observe: 'response' })
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      return this.http
+        .post<any>(this.url, {email, password}, {observe: 'response'})
+        .pipe(
+          map((res) => {
+            console.log(res);
+            return res;
+          })
+        );
   }
 
   setLoggedUser(user: User) {

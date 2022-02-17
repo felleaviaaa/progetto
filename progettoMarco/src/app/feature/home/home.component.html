@@ -1,8 +1,17 @@
 <div class="main">
   <div class="userDetail">
     <h1>Benvenuta :</h1>
-    <h2>{{ storedUser?.body?.Users?.email | json }}</h2>
-    <h1>Il tuo ruolo è quello di :</h1>
-    <h2>{{ storedUser?.body?.Users?.role | json }}</h2>
+    <h2>{{ storedUser?.body?.email | json }}</h2>
+    <h1>Il tuo token ha :</h1>
+    <ul>
+      <li>EXP : {{storedToken?.exp}}</li>
+      <li>NAME : {{storedToken?.name}}</li>
+      <li>
+        <ol>Gropus :
+          <li *ngFor="let item of storedToken?.groups">{{item}}</li>
+        </ol>
+      </li>
+    </ul>
+    <h2>  </h2>
   </div>
 </div>
