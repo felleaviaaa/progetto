@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OneInterceptor } from './core/service/interceptor/one.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { fakeBackendProvider } from "./core/service/interceptor/fake-backend";
 @NgModule({
   declarations: [AppComponent, LoginFormComponent],
   imports: [
@@ -35,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       useClass: OneInterceptor,
       multi: true,
     },
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent],
 })
