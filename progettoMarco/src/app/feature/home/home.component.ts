@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {AuthService} from "../../core/service/auth.service";
 
 
 @Component({
@@ -8,7 +9,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private jwtHelper: JwtHelperService) {}
+  constructor(private jwtHelper: JwtHelperService, private authService : AuthService) {}
   name: string;
   storedUser: any;
   storedToken : any;
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
     this.retrieve();
     this.getToken();
     this.infoToken();
+    this.getFakeList()
   }
 
   retrieve() {
@@ -36,5 +38,11 @@ export class HomeComponent implements OnInit {
     console.log('inside localstorage about token');
     this.storedToken = JSON.parse(localStorage.getItem('localStorageToken') as string);
     console.log('storedToken:', this.storedToken);
+  }
+
+  getFakeList() {
+    return this.authService.getFake().subscribe((oserver : any)=>{
+      console.log('x')
+    });
   }
 }

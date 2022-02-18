@@ -15,6 +15,7 @@ import { OneInterceptor } from './core/service/interceptor/one.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { fakeBackendProvider } from "./core/service/interceptor/fake-backend";
 import { JwtModule } from "@auth0/angular-jwt";
+import {Authorization} from "./core/service/interceptor/authorization";
 @NgModule({
   declarations: [AppComponent, LoginFormComponent],
   imports: [
@@ -42,8 +43,14 @@ import { JwtModule } from "@auth0/angular-jwt";
       useClass: OneInterceptor,
       multi: true,
     },
-    fakeBackendProvider
+    fakeBackendProvider,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Authorization,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent],
+
 })
 export class AppModule {}

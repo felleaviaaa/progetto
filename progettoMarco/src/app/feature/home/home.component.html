@@ -1,17 +1,18 @@
 <div class="main">
   <div class="userDetail">
-    <h1>Benvenuta :</h1>
-    <h2>{{ storedUser?.body?.email | json }}</h2>
-    <h1>Il tuo token ha :</h1>
+    <h2>Benvenuta :</h2>
+    <h3>{{ storedUser?.body?.email | json }}</h3>
+    <h2>Il tuo token è :</h2>
     <ul>
       <li>EXP : {{storedToken?.exp}}</li>
       <li>NAME : {{storedToken?.name}}</li>
-      <li>
-        <ol>Gropus :
-          <li *ngFor="let item of storedToken?.groups">{{item}}</li>
-        </ol>
-      </li>
     </ul>
-    <h2>  </h2>
+    <ol>Gropus :
+    <li *ngFor="let item of storedToken?.groups">{{item}}</li>
+  </ol>
+
+    <button mat-stroked-button color="warn" (click)="getFakeList()" type="submit">
+    Chiamata prova
+  </button>
   </div>
 </div>
