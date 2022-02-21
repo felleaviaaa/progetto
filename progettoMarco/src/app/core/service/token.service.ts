@@ -18,5 +18,8 @@ export class TokenService {
   setInfoObs(user : any){
     this.logged.next(user)
   }
+  takeValue(){
+    return this.logged.value;
+  }
   constructor() { }
 }
