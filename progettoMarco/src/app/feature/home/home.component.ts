@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {JwtHelperService} from "@auth0/angular-jwt";
-import {AuthService} from "../../core/service/auth.service";
-import {TokenService} from "../../core/service/token.service";
-import {User} from "../model/user";
-
+import { AuthService } from '../../core/service/auth.service';
+import { TokenService } from '../../core/service/token.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-home',
@@ -11,37 +9,33 @@ import {User} from "../model/user";
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private jwtHelper: JwtHelperService, private authService : AuthService, private tokenService : TokenService) {}
+  constructor(
+    private jwtHelper: JwtHelperService,
+    private authService: AuthService,
+    private tokenService: TokenService
+  ) {}
   name: string;
   storedUser: any;
-  storedToken : any;
-  decodedToken: any;
 
+  decodedToken: any;
+  private helper = new JwtHelperService();
 
   ngOnInit(): void {
     this.retrieve();
-    this.getToken();
   }
 
   retrieve() {
     console.log('inside localstorage');
-   this.tokenService.getInfoObs().subscribe(
-      res=>{
-        this.storedUser = res
-      }
-    );
+    this.tokenService.getInfoObs().subscribe((res) => {
+      this.storedUser = res;
+      this.decodedToken = this.helper.decodeToken(this.storedUser.body.token);
+    });
     console.log('storedUser:', this.storedUser.body);
-}
-  getToken(){
-    const helper = new JwtHelperService();
-    let codetoken = this.storedUser.body.token;
-    this.decodedToken = helper.decodeToken(codetoken);
-  console.log(this.decodedToken)
   }
 
   getFakeList() {
-    return this.authService.getFake().subscribe((oserver : any)=>{
-      console.log('x')
+    return this.authService.getFake().subscribe((oserver: any) => {
+      console.log('x');
     });
   }
 }
