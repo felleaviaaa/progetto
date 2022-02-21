@@ -28,9 +28,9 @@ export class HomeComponent implements OnInit {
     console.log('inside localstorage');
     this.tokenService.getInfoObs().subscribe((res) => {
       this.storedUser = res;
-      this.decodedToken = this.helper.decodeToken(this.storedUser.body.token);
+      this.decodedToken = this.helper.decodeToken(this.storedUser.token);
     });
-    console.log('storedUser:', this.storedUser.body);
+    console.log('storedUser:', this.storedUser);
   }
 
   getFakeList() {

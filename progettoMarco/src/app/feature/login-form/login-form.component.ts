@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { observable } from 'rxjs';
-import {TokenService} from "../../core/service/token.service";
+import { TokenService } from '../../core/service/token.service';
 
 @Component({
   selector: 'app-login-form',
@@ -36,7 +36,7 @@ export class LoginFormComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private tokenService : TokenService
+    private tokenService: TokenService
   ) {}
 
   ngOnInit() {
@@ -44,14 +44,13 @@ export class LoginFormComponent implements OnInit {
       email: this.email,
       password: this.password,
     });
-
   }
 
   onLogin() {
     this.auth.loginUser(this.email.value, this.password.value).subscribe(
       (data) => {
         this.tokenService.setInfoObs(data);
-        console.log(data)
+        console.log(data);
         this.router.navigateByUrl('/home');
       },
       (error) => {
