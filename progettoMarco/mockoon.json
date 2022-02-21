@@ -1,0 +1,188 @@
+{
+    "source": "mockoon:1.17.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "4da1e894-f11a-476f-991a-f62627798c1d",
+                "lastMigration": 19,
+                "name": "EngProject",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 3001,
+                "hostname": "0.0.0.0",
+                "routes": [
+                    {
+                        "uuid": "dafac9bf-9231-48ad-b2fb-216df3d35ede",
+                        "documentation": "",
+                        "method": "post",
+                        "endpoint": "login",
+                        "responses": [
+                            {
+                                "uuid": "916fa159-5836-4e7c-9864-ff71b1788d13",
+                                "body": "{\r\n  \r\n}",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "ErrorMessage",
+                                        "value": "\"Marco dice che non va bene\""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "126c35b1-d4cc-4416-9a6b-000945a350e1",
+                                "body": "{\r\n   \"Users\":{\r\n      \"id\":1,\r\n      \"email\":\"felle@mail.com\",\r\n      \"password\":\"Flavia2\",\r\n      \"role\":\"user\"\r\n   }\r\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "body",
+                                        "modifier": "email",
+                                        "value": "felle@mail.com",
+                                        "operator": "equals"
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "password",
+                                        "value": "Flavia2",
+                                        "operator": "equals"
+                                    }
+                                ],
+                                "rulesOperator": "AND",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "345a2d8b-6827-4799-b570-369832bae078",
+                                "body": "{\n  \n}",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Errore",
+                                        "value": "\"Email o Password Errate\""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "body",
+                                        "modifier": "password",
+                                        "value": "Flavia2",
+                                        "operator": "equals"
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "email",
+                                        "value": "felle@mail.com",
+                                        "operator": "equals"
+                                    }
+                                ],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "0bf2151f-16e6-4d42-857a-92c748f5169f",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "gettest",
+                        "responses": [
+                            {
+                                "uuid": "dcb17d7a-ab92-4cd7-b664-10002fb837d8",
+                                "body": "{}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "proxyRemovePrefix": false,
+                "tlsOptions": {
+                    "enabled": false,
+                    "type": "CERT",
+                    "pfxPath": "",
+                    "certPath": "",
+                    "keyPath": "",
+                    "caPath": "",
+                    "passphrase": ""
+                },
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Methods",
+                        "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Headers",
+                        "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+                    },
+                    {
+                        "key": "Access-Control-Expose-Headers",
+                        "value": "ErrorMessage,Errore"
+                    }
+                ],
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}
