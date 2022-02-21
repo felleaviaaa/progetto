@@ -23,18 +23,18 @@ export class AuthService {
         );
   }
 
-  setLoggedUser(user: User) {
-    localStorage.setItem('loggedUser', JSON.stringify(user));
-  }
-  getLoggedUser(){
-  const logged = localStorage.getItem('localStorageToken');
-    if (logged){
-      console.log(logged)
-      return JSON.parse(logged)
-    }else{
-      return null
-    }
-  }
+  //setLoggedUser(user: User) {
+  //  localStorage.setItem('loggedUser', JSON.stringify(user));
+ // }
+ // getLoggedUser(){
+ // const logged = localStorage.getItem('localStorageToken');
+   // if (logged){
+    //  console.log(logged)
+    //  return JSON.parse(logged)
+   // }else{
+   //   return null
+ //   }
+ // }
   getFake(){
     return this.http.get<any>('http://localhost:3001/gettest');
   }

@@ -4,11 +4,11 @@
     <h3>{{ storedUser?.body?.email | json }}</h3>
     <h2>Il tuo token è :</h2>
     <ul>
-      <li>EXP : {{storedToken?.exp}}</li>
-      <li>NAME : {{storedToken?.name}}</li>
+      <li>EXP : {{decodedToken?.exp}}</li>
+      <li>NAME : {{decodedToken?.name}}</li>
     </ul>
     <ol>Gropus :
-    <li *ngFor="let item of storedToken?.groups">{{item}}</li>
+    <li *ngFor="let item of decodedToken?.groups">{{item}}</li>
   </ol>
 
     <button mat-stroked-button color="warn" (click)="getFakeList()" type="submit">
