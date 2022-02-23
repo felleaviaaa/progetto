@@ -1,3 +1,11 @@
-<main>
-  <router-outlet></router-outlet>
-</main>
+<app-header *ngIf="status" [inputSideNav]="sideNav"></app-header>
+<mat-sidenav-container>
+  <mat-sidenav #sideNav (click)="sideNav.toggle()" mode="side">
+    <div *ngFor="let element of item">
+      <a routerLink="/">{{ element }}</a>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

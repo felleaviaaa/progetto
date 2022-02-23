@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule, Routes} from "@angular/router";
-import {HomeComponent} from "./home.component";
-import {MatButtonModule} from "@angular/material/button";
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home.component';
+import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from '../../shared/shared.module';
 
-
-const routes: Routes = [
-  {path:'', component: HomeComponent}
-]
+const routes: Routes = [{ path: '', component: HomeComponent }];
 
 @NgModule({
   declarations: [HomeComponent],
@@ -15,7 +13,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MatButtonModule,
-
-  ]
+    SharedModule,
+  ],
 })
-export class HomeModule { }
+export class HomeModule {}

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,12 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../core/service/auth.service';
-import { User } from '../model/user';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { observable } from 'rxjs';
 import { TokenService } from '../../core/service/token.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-login-form',
@@ -50,7 +49,6 @@ export class LoginFormComponent implements OnInit {
     this.auth.loginUser(this.email.value, this.password.value).subscribe(
       (data) => {
         this.tokenService.setInfoObs(data);
-        console.log(data);
         this.router.navigateByUrl('/home');
       },
       (error) => {

@@ -1,18 +1,10 @@
-<div class="main">
-  <div class="userDetail">
-    <h2>Benvenuta :</h2>
-    <h3>{{ storedUser?.body?.email | json }}</h3>
-    <h2>Il tuo token è :</h2>
-    <ul>
-      <li>EXP : {{decodedToken?.exp}}</li>
-      <li>NAME : {{decodedToken?.name}}</li>
-    </ul>
-    <ol>Gropus :
-    <li *ngFor="let item of decodedToken?.groups">{{item}}</li>
-  </ol>
-
-    <button mat-stroked-button color="warn" (click)="getFakeList()" type="submit">
-    Chiamata prova
-  </button>
+<div class="container">
+  <div class="cards">
+    <app-card
+      *ngFor="let item of itemList"
+      [itemTitle]="item?.title"
+      [itemImg]="item?.image"
+    >
+    </app-card>
   </div>
 </div>

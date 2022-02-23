@@ -19,7 +19,6 @@ export class OneInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       map((res) => {
-        console.log(res);
         return res;
       }),
       catchError((err) => {

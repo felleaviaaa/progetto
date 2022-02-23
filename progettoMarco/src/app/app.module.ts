@@ -13,9 +13,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OneInterceptor } from './core/service/interceptor/one.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { fakeBackendProvider } from "./core/service/interceptor/fake-backend";
-import { JwtModule } from "@auth0/angular-jwt";
-import {Authorization} from "./core/service/interceptor/authorization";
+import { fakeBackendProvider } from './core/service/interceptor/fake-backend';
+import { JwtModule } from '@auth0/angular-jwt';
+import { Authorization } from './core/service/interceptor/authorization';
+import { LayoutModule } from './core/layout/layout.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, LoginFormComponent],
@@ -34,9 +37,12 @@ import {Authorization} from "./core/service/interceptor/authorization";
     MatSnackBarModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter:  () => localStorage.getItem('access_token')
-      }
-    })
+        tokenGetter: () => localStorage.getItem('access_token'),
+      },
+    }),
+    LayoutModule,
+    MatSidenavModule,
+    CommonModule,
   ],
   providers: [
     {
@@ -49,9 +55,8 @@ import {Authorization} from "./core/service/interceptor/authorization";
       provide: HTTP_INTERCEPTORS,
       useClass: Authorization,
       multi: true,
-    }
+    },
   ],
   bootstrap: [AppComponent],
-
 })
 export class AppModule {}

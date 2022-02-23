@@ -21,9 +21,6 @@ export class AuthService {
     );
   }
 
-  //setLoggedUser(user: User) {
-  //  localStorage.setItem('loggedUser', JSON.stringify(user));
-  // }
   // getLoggedUser(){
   // const logged = localStorage.getItem('localStorageToken');
   // if (logged){

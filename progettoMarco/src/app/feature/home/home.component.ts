@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../core/service/auth.service';
-import { TokenService } from '../../core/service/token.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { ItemsListService } from '../../core/service/items-list.service';
+import { Observable, Subscription } from 'rxjs';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,33 +9,29 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private jwtHelper: JwtHelperService,
-    private authService: AuthService,
-    private tokenService: TokenService
-  ) {}
-  name: string;
-  storedUser: any;
+  getSubscription: Subscription;
+  itemList: any[];
 
-  decodedToken: any;
-  private helper = new JwtHelperService();
+  constructor(private itemService: ItemsListService) {}
 
   ngOnInit(): void {
-    this.retrieve();
+    this.getItemList();
   }
 
-  retrieve() {
-    console.log('inside localstorage');
-    this.tokenService.getInfoObs().subscribe((res) => {
-      this.storedUser = res;
-      this.decodedToken = this.helper.decodeToken(this.storedUser.token);
-    });
-    console.log('storedUser:', this.storedUser);
+  getItemList() {
+    this.getSubscription = this.itemService.getAll().subscribe(
+      (observer) => {
+        this.itemList = observer;
+        console.log(this.itemList);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {}
+    );
   }
 
-  getFakeList() {
-    return this.authService.getFake().subscribe((oserver: any) => {
-      console.log('x');
-    });
+  ngOnDestroy(): void {
+    this.getSubscription?.unsubscribe();
   }
 }
