@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ItemsListService } from '../../core/service/items-list.service';
-import { Observable, Subscription } from 'rxjs';
-import { from } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { TokenService } from '../../core/service/token.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,10 @@ export class HomeComponent implements OnInit {
   getSubscription: Subscription;
   itemList: any[];
 
-  constructor(private itemService: ItemsListService) {}
+  constructor(
+    private itemService: ItemsListService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
     this.getItemList();

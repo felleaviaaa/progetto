@@ -3,6 +3,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../../service/auth.service';
 import { TokenService } from '../../service/token.service';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Observable } from 'rxjs';
+import { User } from '../../../feature/model/user';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -33,6 +35,4 @@ export class HeaderComponent implements OnInit {
     });
     console.log('storedUser:', this.storedUser);
   }
-
-  checkuser() {}
 }

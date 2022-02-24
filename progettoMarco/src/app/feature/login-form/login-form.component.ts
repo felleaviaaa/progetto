@@ -20,6 +20,7 @@ import { User } from '../model/user';
 export class LoginFormComponent implements OnInit {
   handleError: HttpErrorResponse;
   loginForm: FormGroup;
+
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [
     Validators.required,
@@ -29,6 +30,8 @@ export class LoginFormComponent implements OnInit {
   errorMsg: string;
   user: [];
   @Input() loggedUser;
+  @Input() status: boolean;
+  // @Output() public setActiveItem: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,4 +66,7 @@ export class LoginFormComponent implements OnInit {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
+  /* emitItem() {
+    this.setActiveItem.emit(this.tokenService.checkLoggedStatus());
+  }*/
 }

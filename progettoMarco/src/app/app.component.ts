@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TokenService } from './core/service/token.service';
 import { ItemCategoryService } from './core/service/item-category.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from './feature/model/user';
+import { LoginFormComponent } from './feature/login-form/login-form.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
   status: boolean;
   item: any[] = [];
   getItemSub: Subscription;
+  isLoggedIn$: Observable<User>;
 
   constructor(
     private tokenService: TokenService,
@@ -24,7 +26,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getItemSub = this.itemCat();
     console.log(this.status);
-    this.status = this.tokenService.checkLoggedStatus();
+    this.check();
+    // this.status = this.tokenService.checkLoggedStatus();
   }
 
   itemCat() {
@@ -41,4 +44,16 @@ export class AppComponent implements OnInit {
       }
     );
   }
+  check() {
+    this.isLoggedIn$ = this.tokenService.getInfoObs();
+  }
+  /* setActivated(ev) {
+    if (!(ev instanceof LoginFormComponent)) {
+      return;
+    }
+    const child: LoginFormComponent = ev;
+    child.setActiveItem.subscribe(() => {
+      this.status = true;
+    });
+  }*/
 }

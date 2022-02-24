@@ -1,4 +1,8 @@
-<app-header *ngIf="status" [inputSideNav]="sideNav"></app-header>
+<app-header
+  *ngIf="(isLoggedIn$ | async)?.token"
+  [inputSideNav]="sideNav"
+></app-header>
+{{ status }}
 <mat-sidenav-container>
   <mat-sidenav #sideNav (click)="sideNav.toggle()" mode="side">
     <div *ngFor="let element of item">
@@ -6,6 +10,6 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+    <router-outlet> <!--(activate)="setActivated($event)"--> </router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
