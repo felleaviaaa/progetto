@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TokenService } from '../../core/service/token.service';
-import { User } from '../model/user';
 
 @Component({
   selector: 'app-login-form',
@@ -29,7 +28,6 @@ export class LoginFormComponent implements OnInit {
   hide: boolean = false;
   errorMsg: string;
   user: [];
-  @Input() loggedUser;
   @Input() status: boolean;
   // @Output() public setActiveItem: EventEmitter<any> = new EventEmitter<any>();
 

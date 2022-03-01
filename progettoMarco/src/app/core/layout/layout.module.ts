@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
@@ -17,6 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatMenuModule,
     MatButtonModule,
     MatSidenavModule,
+    MatBadgeModule,
   ],
   exports: [HeaderComponent, FooterComponent],
 })

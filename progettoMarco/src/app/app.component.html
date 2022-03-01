@@ -2,7 +2,7 @@
   *ngIf="(isLoggedIn$ | async)?.token"
   [inputSideNav]="sideNav"
 ></app-header>
-{{ status }}
+
 <mat-sidenav-container>
   <mat-sidenav #sideNav (click)="sideNav.toggle()" mode="side">
     <div *ngFor="let element of item">

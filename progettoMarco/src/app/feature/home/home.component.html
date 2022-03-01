@@ -1,10 +1,5 @@
 <div class="container">
-  <div class="cards">
-    <app-card
-      *ngFor="let item of itemList"
-      [itemTitle]="item?.title"
-      [itemImg]="item?.image"
-    >
-    </app-card>
+  <div class="cards" *ngFor="let item of itemList">
+    <app-card [item]="item"> </app-card>
   </div>
 </div>

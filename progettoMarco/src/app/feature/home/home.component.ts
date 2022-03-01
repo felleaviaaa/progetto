@@ -1,7 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ItemsListService } from '../../core/service/items-list.service';
 import { Subscription } from 'rxjs';
 import { TokenService } from '../../core/service/token.service';
+import { CartService } from '../../core/service/cart.service';
+import { ShopItem } from '../model/shopItem';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +17,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private itemService: ItemsListService,
-    private tokenService: TokenService
+    private cartService: CartService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -32,9 +36,5 @@ export class HomeComponent implements OnInit {
       },
       () => {}
     );
-  }
-
-  ngOnDestroy(): void {
-    this.getSubscription?.unsubscribe();
   }
 }

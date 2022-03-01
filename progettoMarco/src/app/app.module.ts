@@ -19,6 +19,8 @@ import { Authorization } from './core/service/interceptor/authorization';
 import { LayoutModule } from './core/layout/layout.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CommonModule } from '@angular/common';
+import { CartComponent } from './feature/cart/cart.component';
+import { CartModule } from './feature/cart/cart.module';
 
 @NgModule({
   declarations: [AppComponent, LoginFormComponent],
@@ -35,6 +37,7 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     AppRoutingModule,
     MatSnackBarModule,
+    CartModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

@@ -3,8 +3,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../../service/auth.service';
 import { TokenService } from '../../service/token.service';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Observable } from 'rxjs';
-import { User } from '../../../feature/model/user';
+import { CartComponent } from '../../../feature/cart/cart.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CartService } from '../../service/cart.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,11 +17,12 @@ export class HeaderComponent implements OnInit {
   constructor(
     private jwtHelper: JwtHelperService,
     private authService: AuthService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private dialog: MatDialog,
+    public carteService: CartService
   ) {}
   name: string;
   storedUser: any;
-
   decodedToken: any;
   private helper = new JwtHelperService();
 
@@ -34,5 +37,12 @@ export class HeaderComponent implements OnInit {
       this.decodedToken = this.helper.decodeToken(this.storedUser.token);
     });
     console.log('storedUser:', this.storedUser);
+  }
+  openCart() {
+    const dialogRef = this.dialog.open(CartComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

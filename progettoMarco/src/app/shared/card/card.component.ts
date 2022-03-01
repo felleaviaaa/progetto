@@ -1,4 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ShopItem } from '../../feature/model/shopItem';
+import { CartService } from '../../core/service/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ItemsListService } from '../../core/service/items-list.service';
 
 @Component({
   selector: 'app-card',
@@ -6,10 +10,22 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input() itemTitle: string;
-  @Input() itemImg: string;
-  @Input() itemDesc: string;
-  constructor() {}
+  @Input() item: any;
+  @Output() public eventino: EventEmitter<any> = new EventEmitter<any>();
+  count = 0;
+  constructor(
+    private listService: ItemsListService,
+    private _snackBar: MatSnackBar,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {}
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
+  addtocart(item: any) {
+    this.eventino.emit(this.cartService.add(item));
+  }
 }
