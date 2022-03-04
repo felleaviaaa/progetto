@@ -18,7 +18,6 @@ export class Authorization implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.tokenService.takeValue().token;
-    console.log(token);
     const newRequest = req.clone({
       setHeaders: {
         Authorization: 'Bearer ' + token,

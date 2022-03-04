@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {Category} from "../../feature/model/category";
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ItemCategoryService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any> {
-    return this.http.get<any>('http://localhost:3001/getVociMenu');
+  getAll(): Observable<Category[]> {
+    return this.http.get<Category[]>('http://localhost:3001/getVociMenu');
   }
 }

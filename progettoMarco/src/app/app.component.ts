@@ -4,6 +4,7 @@ import { ItemCategoryService } from './core/service/item-category.service';
 import { Observable, Subscription } from 'rxjs';
 import { User } from './feature/model/user';
 import { LoginFormComponent } from './feature/login-form/login-form.component';
+import {Category} from "./feature/model/category";
 
 @Component({
   selector: 'app-root',
@@ -14,27 +15,26 @@ export class AppComponent implements OnInit {
   title = 'progettoMarco';
   hide = true;
   status: boolean;
-  item: any[] = [];
+  categoryList: Category[];
   getItemSub: Subscription;
   isLoggedIn$: Observable<User>;
-
+  listSub : Subscription;
   constructor(
     private tokenService: TokenService,
     private itemCategory: ItemCategoryService
   ) {}
 
   ngOnInit(): void {
-    this.getItemSub = this.itemCat();
     console.log(this.status);
     this.check();
+    this.itemCat()
     // this.status = this.tokenService.checkLoggedStatus();
   }
 
   itemCat() {
-    return this.itemCategory.getAll().subscribe(
-      (obs: any[]) => {
-        console.log(obs);
-        this.item = [...obs];
+    this.listSub = this.itemCategory.getAll().subscribe(
+      (obs) => {
+        this.categoryList = obs;
       },
       (error) => {
         console.log(error);

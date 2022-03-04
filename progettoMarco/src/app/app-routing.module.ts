@@ -6,6 +6,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./feature/home/home.module').then((m) => m.HomeModule),
+  },  {
+    path: 'ricerca',
+    loadChildren: () =>
+      import('./feature/ricerca/ricerca.module').then((m) => m.RicercaModule),
   },
   {
     path: 'login',
