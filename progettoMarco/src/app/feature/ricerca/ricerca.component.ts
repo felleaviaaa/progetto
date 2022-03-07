@@ -16,9 +16,10 @@ export class RicercaComponent implements OnInit {
   hide = false;
   displayedColumns = ['postId', 'id', 'name', 'email'];
   dataSource: any[];
-  page = 1;
+  page = 0;
   pageSize = 10;
   bbo: boolean;
+  lengthResult: number;
 
   constructor(private searchService: SearchService) {}
 
@@ -36,18 +37,27 @@ export class RicercaComponent implements OnInit {
     this.hide = false;
   }
 
-  submit() {
+  submit(newSearch: boolean) {
     this.hide = true;
+    if (newSearch) {
+      this.reset();
+    }
     this.searchService
-      .getFiltered(this.formGroup.value, this.page, this.pageSize)
+      .getFiltered(this.formGroup.value, this.page + 1, this.pageSize)
       .subscribe((res) => {
-        this.dataSource = res;
+        this.dataSource = res.data;
+        this.lengthResult = res.size;
       });
   }
 
+  reset() {
+    this.page = 0;
+    this.pageSize = 10;
+  }
+
   onPageChange(event: PageEvent) {
-    this.page = event.pageIndex + 1;
+    this.page = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.submit();
+    this.submit(false);
   }
 }

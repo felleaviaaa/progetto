@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,11 +15,7 @@ export class SearchService {
     );
   }
 
-  getFiltered(
-    formValue: any,
-    page: number,
-    pageSize: number
-  ): Observable<any[]> {
+  getFiltered(formValue: any, page: number, pageSize: number): Observable<any> {
     const url = 'https://jsonplaceholder.typicode.com/comments';
     let queryParams = new HttpParams();
     if (formValue.postId) {
@@ -35,6 +32,20 @@ export class SearchService {
     }
     queryParams = queryParams.set('_page', page);
     queryParams = queryParams.set('_limit', pageSize);
-    return this.http.get<any[]>(url, { params: queryParams });
+    return this.http
+      .get<any[]>(url, {
+        params: queryParams,
+        observe: 'response',
+      })
+      .pipe(
+        map((res) => {
+          let result: { data: any[] | null; size: string | null } = {
+            data: res.body,
+            size: res.headers.get('x-total-count'),
+          };
+
+          return result;
+        })
+      );
   }
 }

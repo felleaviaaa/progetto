@@ -73,7 +73,7 @@
       [disabled]="!formGroup.valid"
       mat-stroked-button
       color="accent"
-      (click)="submit()"
+      (click)="submit(true)"
     >
       Ricerca
     </button>
@@ -92,8 +92,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <mat-paginator
-    [length]="500"
+    [length]="lengthResult"
     [pageSize]="pageSize"
+    [pageIndex]="page"
     [pageSizeOptions]="[5,10,15]"
     aria-label="Select page"
     (page)="onPageChange($event)">
